@@ -1,0 +1,11 @@
+:root {
+    --bg: #2C2C2C;
+    --text: #ffffff;
+    --sidebar-bg: #262626;
+    --scroll-border: #808080;
+    --scroll-hover: #ffffff;
+    --scroll-bg: #2095DB;
+    --card-bg: #2C2C2C;
+    --card-shadow: #000000bf;
+    --card-help-bg: #2095DB;
+  }

@@ -1,0 +1,30 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 80%;
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    -webkit-box-shadow: 2px 0px 10px 2px var(--card-shadow);
+    -moz-box-shadow: 2px 0px 10px 2px var(--card-shadow);
+    box-shadow: 2px 0px 10px 2px var(--card-shadow);
+}
+
+.card-game {
+    display: flex;
+    width: 70%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.card-help {
+    display: flex;
+    width: 30%;
+    background-color: var( --card-help-bg);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}

@@ -1,12 +1,18 @@
+
 * {
+
   margin: 0;
   font-family: 'Righteous', cursive;
-  color: #fff;
+  color: var(--text);
 }
 
 body {
-  background-color: #2C2C2C;
+  background-color: var(--bg);
 }
+
+/* body p {
+  text-shadow: 0 0 5px aqua;
+} */
 
 .container {
   display: flex;

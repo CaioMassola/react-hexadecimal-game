@@ -1,0 +1,38 @@
+/*iPads, Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    .card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-game {
+        width: 100%;
+        height: 80%;
+    }
+
+    .card-help {
+        height: 20%;
+        width: 100%;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 20px;
+    }
+}
+
+/*Smartphone */
+@media (min-width: 320px) and (max-width: 480px) {
+    .card {
+        flex-direction: column;
+    }
+
+    .card-game {
+        width: 100%;
+        height: 80%;
+    }
+
+    .card-help {
+        height: 20%;
+        width: 100%;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 20px;
+    }
+}

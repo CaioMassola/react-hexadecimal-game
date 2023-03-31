@@ -1,5 +1,5 @@
-import './style/style.css'
-import './style/media-queries.css'
+import './styles/style.css'
+import './styles/media-queries.css'
 
 const Sidebar = () => {
   return (
