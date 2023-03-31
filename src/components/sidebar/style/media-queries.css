@@ -1,0 +1,49 @@
+/* Large Screens */
+/* @media (min-width: 1201px) {
+
+}  */
+
+/*Small screens, laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar {
+        width: 650px;
+    }
+
+    .header p {
+        font-size: 25px;
+    }
+
+    .sub-title-sidebar p {
+        font-size: 18px;
+    }
+}
+
+/*iPads, Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    .sidebar {
+        width: 500px;
+    }
+
+    .header p {
+        font-size: 20px;
+    }
+
+    .sub-title-sidebar p {
+        font-size: 15px;
+    }
+}
+
+/*Smartphone */
+@media (min-width: 320px) and (max-width: 480px) {
+    .sidebar {
+        width: 300px;
+    }
+
+    .header p {
+        font-size: 12px;
+    }
+
+    .sub-title-sidebar p {
+        font-size: 8px;
+    }
+}
