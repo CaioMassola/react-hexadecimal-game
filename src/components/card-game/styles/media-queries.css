@@ -1,3 +1,91 @@
+/*Small screens, laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-game {
+        width: 100%;
+        height: 80%;
+    }
+
+    .card-help {
+        height: 20%;
+        width: 100%;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 20px;
+    }
+
+    .card-title  {
+        font-size: 30px;
+    }
+
+    .card-info {
+        display: flex;
+        flex-direction: column;
+        height: 20%;
+    }
+    .timer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 5px;
+    }
+    
+    .timer-value {
+        font-size: 20px;
+        margin-left: 10px;
+        margin-top: 0;
+    }
+
+    .btn-restart {
+        width: 80%;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 18px;
+        margin-top: 2%;
+    }
+
+    .score-container {
+        display: flex;
+        flex-direction: row;
+        margin-top: 2%;
+    }
+
+    .hight-score {
+        font-size: 15px;
+        margin-top: 2px
+    }
+    
+    .score {
+        padding-top: 0px;
+        padding-left: 20px;
+    }
+
+    .card-delete-info {
+        margin-top: 5%;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+    }
+    .btn-options {
+        width: 100%;
+        height: 50%;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
+    .btn-delete {
+        width: 50%;
+        height: 50%;
+        font-size: 15px;
+    }
+    
+}
+
 /*iPads, Tablets */
 @media (min-width: 481px) and (max-width: 768px) {
     .card {
@@ -16,6 +104,78 @@
         border-top-right-radius: 0;
         border-bottom-left-radius: 20px;
     }
+    
+    .card-title  {
+        font-size: 25px;
+    }
+    .card-info {
+        display: flex;
+        flex-direction: column;
+    }
+    .timer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 15px;
+        font-size: 15px;
+    }
+    
+    .timer-value {
+        font-size: 20px;
+        margin-left: 10px;
+        margin-top: 0;
+    }
+
+    .btn-restart {
+        width: 80%;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 15px;
+        margin-top: 2%;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
+}
+
+    .score-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+
+    .hight-score {
+        font-size: 15px;
+        margin-top: 2px
+    }
+    
+    .score {
+        padding-top: 2px;
+        padding-left: 50px;
+        font-size: 15px;
+    }
+    .card-delete-info {
+        margin-top: 5%;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+    }
+    .btn-options {
+        width: 100%;
+        height: 50%;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
+    .btn-delete {
+        width: 50%;
+        height: 50%;
+        font-size: 15px;
+    }
+    
 }
 
 /*Smartphone */
@@ -35,4 +195,73 @@
         border-top-right-radius: 0;
         border-bottom-left-radius: 20px;
     }
+
+    .card-title {
+        font-size: 15px;
+    }
+    .card-info {
+        display: flex;
+        flex-direction: column;
+    }
+    .timer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 8px;
+        font-size: 10px;
+    }
+    
+    .timer-value {
+        font-size: 10px;
+        margin-left: 10px;
+        margin-top: 0;
+    }
+
+    .btn-restart {
+        width: 80%;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 8px;
+        margin-top: 2%;
+    }
+
+    .score-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 4%;
+    }
+
+    .hight-score {
+        font-size: 8px;
+        margin-top: 2px
+    }
+    
+    .score {
+        padding-top: 2px;
+        padding-left: 5px;
+        font-size: 8px;
+    }
+    .card-delete-info {
+        height: 5%;
+        margin-top: 9%;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+    }
+    .btn-options {
+        width: 100%;
+        height: 50%;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .btn-delete {
+        width: 70%;
+        height: 95%;
+        font-size: 10px;
+    }
+    
 }

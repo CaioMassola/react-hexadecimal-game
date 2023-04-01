@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import CardGame from './components/card-game'
 import Sidebar from './components/sidebar'

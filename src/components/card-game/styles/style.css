@@ -16,6 +16,7 @@
 
 .card-game {
     display: flex;
+    flex-direction: column;
     width: 70%;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -24,7 +25,234 @@
 .card-help {
     display: flex;
     width: 30%;
-    background-color: var( --card-help-bg);
+    background-color: var(--card-help-bg);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+
+.card-title {
+    font-size: 30px;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 80%;
+    min-height: 15%;
+    max-height: 50%;
+    align-self: center;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    box-shadow: 0px 0px 2px 2px var(--card-shadow-info);
+}
+
+.card-question {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 80%;
+    height: 50%;
+    align-self: center;
+}
+
+.card-delete-info {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 80%;
+    height: 15%;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer-value {
+    font-size: 40px;
+}
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    justify-content: center;
+}
+
+.hight-score {
+    font-size: 20px;
+    color: var(--hight-score-text);
+}
+
+.score {
+    padding-top: 15px;
+}
+
+.btn-restart {
+    width: 20%;
+    height: 40%;
+    border-radius: 8px;
+    font-size: 20px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    background-color: var(--card-btn-restart);
+    border: 1px solid var(--card-btn-restart-border);
+}
+
+.btn-restart-disabled {
+    width: 20%;
+    height: 40%;
+    border-radius: 8px;
+    font-size: 20px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    background-color: var(--btn-disabled);
+    border: 1px solid var(--btn-disabled);
+    color: var(--btn-text-disabled);
+}
+
+.btn-restart:hover {
+    background-color: var(--card-btn-restart-bg-hover);
+    color: var(--card-btn-restart-hover-text);
+    border: 1px solid var(--card-btn-restart-hover-border);
+    cursor: pointer;
+}
+
+.btn-restart-disabled:hover {
+    background-color: var(--btn-disabled);
+    border: 1px solid var(--btn-disabled);
+    cursor: no-drop;
+}
+
+.progress-bar-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    margin: 20px;
+    border-radius: 8px;
+    background-color: var(--progress-bg);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.progress-bar::-webkit-progress-bar {
+    background-color: var(--progress-bg);
+    border-radius: 10px;
+}
+
+.progress-bar::-webkit-progress-value {
+    background-color: var(--progress-value);
+    border-radius: 10px;
+}
+
+.game-view-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2px;
+    width: 100%;
+    height: 80%;
+}
+
+.color-question {
+    width: 100%;
+    height: 70%;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    box-shadow: 0px 0px 2px 2px var(--card-shadow-info);
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    margin-top: 20px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.btn-options {
+    width: 20%;
+    height: 50%;
+    border-radius: 8px;
+    font-size: 18px;
+    background-color: var(--btn-options-bg);
+    color: var(--btn-options-text);
+    border: 1px solid var(--btn-options-border);
+}
+
+.btn-options:hover {
+    color: var(--btn-options-text-hover);
+    background-color: var(--btn-options-bg-hover);
+    border: 1px solid var(--btn-options-border-hover);
+    cursor: pointer;
+}
+
+.btn-start {
+    width: 70%;
+    height: 70%;
+    border-radius: 8px;
+    background-color: #2095DB;
+    font-size: 25px;
+    color: white;
+    border: 1px solid white;
+}
+
+.btn-start:hover {
+    background-color: white;
+    font-size: 20px;
+    color: #2095DB;
+    border: 1px solid #2095DB;
+    cursor: pointer;
+}
+
+.btn-delete {
+    width: 20%;
+    height: 35%;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: var(--btn-delete-bg);
+    color: var( --btn-delete-text);
+    border: 1px solid var(--btn-delete-bg);
+}
+
+.btn-delete:hover {
+    background-color: var(--btn-delete-bg-hover);
+    color: var(--btn-delete-text-hover);
+    border: 1px solid var(--btn-delete-text-hover);
+    cursor: pointer;
 }

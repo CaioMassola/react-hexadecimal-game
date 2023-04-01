@@ -16,6 +16,22 @@
     .sub-title-sidebar p {
         font-size: 18px;
     }
+
+    .button-selected {
+        font-size: 12px;
+    }
+
+    .button-not-selected {
+        font-size: 12px;
+    }
+
+    .button-selected:hover {
+        font-size: 12px;
+    }
+
+    .button-not-selected:hover {
+        font-size: 12px;
+    }
 }
 
 /*iPads, Tablets */
@@ -31,6 +47,24 @@
     .sub-title-sidebar p {
         font-size: 15px;
     }
+
+    .button-selected {
+        font-size: 12px;
+        height: 40px;
+    }
+
+    .button-not-selected {
+        font-size: 12px;
+        height: 40px;
+    }
+
+    .button-selected:hover {
+        font-size: 12px;
+    }
+
+    .button-not-selected:hover {
+        font-size: 12px;
+    }
 }
 
 /*Smartphone */
@@ -45,5 +79,23 @@
 
     .sub-title-sidebar p {
         font-size: 8px;
+    }
+
+    .button-selected {
+        font-size: 12px;
+        height: 35px;
+    }
+
+    .button-not-selected {
+        font-size: 12px;
+        height: 35px;
+    }
+
+    .button-selected:hover {
+        font-size: 12px;
+    }
+
+    .button-not-selected:hover {
+        font-size: 12px;
     }
 }
