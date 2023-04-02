@@ -92,9 +92,9 @@
     justify-content: center;
 }
 
-.hight-score {
+.high-score {
     font-size: 20px;
-    color: var(--hight-score-text);
+    color: var(--high-score-text);
 }
 
 .score {

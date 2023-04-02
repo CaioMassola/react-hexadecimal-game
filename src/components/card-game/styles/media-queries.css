@@ -17,7 +17,7 @@
         border-bottom-left-radius: 20px;
     }
 
-    .card-title  {
+    .card-title {
         font-size: 30px;
     }
 
@@ -26,13 +26,14 @@
         flex-direction: column;
         height: 20%;
     }
+
     .timer {
         display: flex;
         flex-direction: row;
         align-items: center;
         margin-top: 5px;
     }
-    
+
     .timer-value {
         font-size: 20px;
         margin-left: 10px;
@@ -47,17 +48,27 @@
         margin-top: 2%;
     }
 
+
+    .btn-restart-disabled {
+        width: 80%;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 18px;
+        margin-top: 2%;
+        ;
+    }
+
     .score-container {
         display: flex;
         flex-direction: row;
         margin-top: 2%;
     }
 
-    .hight-score {
+    .high-score {
         font-size: 15px;
         margin-top: 2px
     }
-    
+
     .score {
         padding-top: 0px;
         padding-left: 20px;
@@ -71,6 +82,7 @@
         display: flex;
         flex-direction: column;
     }
+
     .btn-options {
         width: 100%;
         height: 50%;
@@ -83,7 +95,7 @@
         height: 50%;
         font-size: 15px;
     }
-    
+
 }
 
 /*iPads, Tablets */
@@ -104,14 +116,16 @@
         border-top-right-radius: 0;
         border-bottom-left-radius: 20px;
     }
-    
-    .card-title  {
+
+    .card-title {
         font-size: 25px;
     }
+
     .card-info {
         display: flex;
         flex-direction: column;
     }
+
     .timer {
         display: flex;
         flex-direction: row;
@@ -119,7 +133,7 @@
         margin-top: 15px;
         font-size: 15px;
     }
-    
+
     .timer-value {
         font-size: 20px;
         margin-left: 10px;
@@ -132,11 +146,17 @@
         border-radius: 8px;
         font-size: 15px;
         margin-top: 2%;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        -ms-border-radius: 8px;
-        -o-border-radius: 8px;
-}
+    }
+
+
+    .btn-restart-disabled {
+        width: 80%;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 15px;
+        margin-top: 2%;
+        ;
+    }
 
     .score-container {
         display: flex;
@@ -145,24 +165,23 @@
         margin-top: 10px;
     }
 
-    .hight-score {
+    .high-score {
         font-size: 15px;
         margin-top: 2px
     }
-    
+
     .score {
         padding-top: 2px;
         padding-left: 50px;
         font-size: 15px;
     }
-    .card-delete-info {
-        margin-top: 5%;
-    }
+
 
     .options {
         display: flex;
         flex-direction: column;
     }
+
     .btn-options {
         width: 100%;
         height: 50%;
@@ -170,12 +189,16 @@
         margin-top: 5px;
     }
 
-    .btn-delete {
-        width: 50%;
-        height: 50%;
+    .btn-start {
         font-size: 15px;
     }
-    
+
+    .btn-delete {
+        width: 50%;
+        height: 35%;
+        font-size: 15px;
+    }
+
 }
 
 /*Smartphone */
@@ -199,10 +222,12 @@
     .card-title {
         font-size: 15px;
     }
+
     .card-info {
         display: flex;
         flex-direction: column;
     }
+
     .timer {
         display: flex;
         flex-direction: row;
@@ -210,7 +235,7 @@
         margin-top: 8px;
         font-size: 10px;
     }
-    
+
     .timer-value {
         font-size: 10px;
         margin-left: 10px;
@@ -225,6 +250,15 @@
         margin-top: 2%;
     }
 
+    .btn-restart-disabled {
+        width: 80%;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 8px;
+        margin-top: 2%;
+        ;
+    }
+
     .score-container {
         display: flex;
         flex-direction: row;
@@ -232,16 +266,17 @@
         margin-top: 4%;
     }
 
-    .hight-score {
+    .high-score {
         font-size: 8px;
         margin-top: 2px
     }
-    
+
     .score {
         padding-top: 2px;
         padding-left: 5px;
         font-size: 8px;
     }
+
     .card-delete-info {
         height: 5%;
         margin-top: 9%;
@@ -251,6 +286,7 @@
         display: flex;
         flex-direction: column;
     }
+
     .btn-options {
         width: 100%;
         height: 50%;
@@ -258,10 +294,14 @@
         margin-top: 5px;
     }
 
+    .btn-start {
+        font-size: 15px;
+    }
+
     .btn-delete {
         width: 70%;
         height: 95%;
         font-size: 10px;
     }
-    
+
 }
