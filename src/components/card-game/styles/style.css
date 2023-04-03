@@ -68,8 +68,8 @@
     display: flex;
     flex-direction: row;
     align-self: center;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
     width: 80%;
     height: 15%;
 }
@@ -222,13 +222,14 @@
     cursor: pointer;
 }
 
+
 .btn-start {
     width: 70%;
     height: 70%;
     border-radius: 8px;
     background-color: #2095DB;
     font-size: 25px;
-    color: white;
+    color: #000000;
     border: 1px solid white;
 }
 
@@ -241,13 +242,15 @@
 }
 
 .btn-delete {
-    width: 20%;
+    width: 40%;
     height: 35%;
     border-radius: 8px;
-    font-size: 15px;
     background-color: var(--btn-delete-bg);
     color: var( --btn-delete-text);
-    border: 1px solid var(--btn-delete-bg);
+    font-weight: lighter;
+    font-size: 15px;
+    border: 0px solid var(--btn-delete-border);
+    box-shadow: 0px 0px 2px 2px var(--btn-delete-shadow);
 }
 
 .btn-delete:hover {

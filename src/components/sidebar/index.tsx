@@ -1,14 +1,27 @@
 import "./styles/style.css"
 import "./styles/media-queries.css"
 import { useEffect, useState } from "react";
+import { IHistory } from "../../models/history";
 
-const Sidebar = () => {
+type SideBarProps = {
+  state: IHistory[];
+}
 
+const Sidebar = (props: SideBarProps) => {
+
+  const { state } = props;
+  const historyLocalStorageJson = localStorage.getItem('history');
+  const historyLocalStorage: IHistory[] = historyLocalStorageJson
+    ? JSON.parse(historyLocalStorageJson)
+    : [];
   const [isCurrentGame, setIsCurrentGame] = useState<'current' | 'lastest'>('current');
-
+  const [history, setHistory] = useState<IHistory[]>(state);
+  
   useEffect(() => {
-    console.log('isCurrentgame', isCurrentGame)
-  }, [isCurrentGame])
+    setHistory(isCurrentGame=== 'current' ? state : historyLocalStorage);
+    console.log('his', state)
+  },[state, isCurrentGame])
+
 
   const _handleHistory = (type: string) => {
     setIsCurrentGame(type === 'current' ? "lastest" : 'current');
@@ -27,49 +40,48 @@ const Sidebar = () => {
     return (
       <div className="sub-title-sidebar">
         <p>Guessed Color</p>
-        <p> | </p>
         <p>Correct Color</p>
-        <p> | </p>
         <p>Score</p>
       </div>
     )
   }
 
+  const _NoHistory = () => {
+    return (
+      <li>
+        <div className="no-history">
+          No History
+        </div>
+      </li>
+    )
+
+  }
+
   const _HistoryDataView = () => {
     return (
       <ul >
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-        <li>Item 5</li>
-        <li>Item 6</li>
-        <li>Item 7</li>
-        <li>Item 8</li>
-        <li>Item 9</li>
-        <li>Item 10</li>
-        <li>Item 11</li>
-        <li>Item 12</li>
-        <li>Item 13</li>
-        <li>Item 14</li>
-        <li>Item 15</li>
-        <li>Item 16</li>
-        <li>Item 17</li>
-        <li>Item 18</li>
-        <li>Item 19</li>
-        <li>Item 17</li>
-        <li>Item 18</li>
-        <li>Item 19</li>
-        <li>Item 13</li>
-        <li>Item 14</li>
-        <li>Item 15</li>
-        <li>Item 16</li>
-        <li>Item 17</li>
-        <li>Item 18</li>
-        <li>Item 19</li>
-        <li>Item 17</li>
-        <li>Item 18</li>
-        <li>Item 19</li>
+        {
+          history.length > 0 ?
+            history.reverse().map((x, idx) => {
+              return (
+                <li key={idx}>
+                  <div className="history">
+                    <div className="card-result" style={{backgroundColor: x.guessedColor}}>
+                      <p>{x.guessedColor}</p>
+                    </div>
+                    <div className="card-result" style={{backgroundColor: x.correctColor}}>
+                      <p>{x.correctColor}</p>
+                    </div>
+                    <div className="scoreText" style={{color: x.correctColor === x.guessedColor ? '#5cd65c' : '#ff4d4d'}}>
+                      {x.score}
+                    </div>
+                  </div>
+                </li>
+              )
+            })
+            :
+            <_NoHistory />
+        }
       </ul>
     )
   }

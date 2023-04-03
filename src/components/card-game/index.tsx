@@ -2,36 +2,58 @@ import './styles/style.css';
 import './styles/media-queries.css';
 import { useEffect, useRef, useState } from 'react';
 import { colorOption, getColors } from '../../utils';
+import { IHistory } from '../../models/history';
 
-const CardGame = () => {
+type CardProps = {
+    updateSideBar: (x: IHistory[]) => void;
+}
 
+const CardGame = (props: CardProps) => {
+
+    const { updateSideBar } = props
+
+    //for start game
     const [btnStart, setBtnStart] = useState<boolean>(false);
 
-    //for progress
-    const [progressBar, setProgressBar] = useState<number>(0);
-    const [timerProgressBar, setTimeProgressBar] = useState<boolean>(false);
-    const progressRef = useRef<number>();
+    //for colors
+    const [colors, setColors] = useState<string[]>([]);
+    const [option, setOption] = useState<string>('');
 
-    //for time
+    //for score 
+    const highScoreLocalStorage = localStorage.getItem("high-score")
+    const [score, setScore] = useState<number>(0);
+    const [highScore, setHighScore] = useState<number>(highScoreLocalStorage ? Number(highScoreLocalStorage) : 0);
+
+
+    //for history
+    const [history, setHistory] = useState<IHistory[]>([]);
+
+    //for progress event 
+    const [progressBar, setProgressBar] = useState<number>(0)
+    const [idProgressBar, setIdProgressBar] = useState<number | undefined>(undefined);
+
+    //for time event
     const [timer, setTimer] = useState<number>(30);
     const [timerStart, setTimerStart] = useState<boolean>(false);
     const timerRef = useRef<number>();
 
-    //for colors
-    const [colors, setColors] = useState<string[]>([]);
-    const [option, setOption] = useState<string>();
 
-    //for score
-    const [score, setScore] = useState<number>(0);
-    const [highScore, setHighScore] = useState<number>(10);
+    //insert last color
+    useEffect(() => {
+        if(timer === 0) {
+            handleHistory('', 2)
+        }
+    }, [timer])
 
+    //set right color
     useEffect(() => {
         if (colors.length) {
             const color = colorOption(colors);
             setOption(color)
         }
     }, [colors])
-
+    
+    //
     useEffect(() => {
         if (timerStart) {
             startTimer();
@@ -40,38 +62,63 @@ const CardGame = () => {
         }
     }, [timerStart]);
 
+    //verify endgame
     useEffect(() => {
-        if (timerProgressBar && progressBar < 100) {
-            progressRef.current = setInterval(() => {
-                setProgressBar((x) => x + 1);
-            }, 100);
-        } else {
-            clearInterval(progressRef.current);
+        if (timer === 0) {
+            handleEndGame();
+        }
+    }, [timer, history])
+
+    //for update of progress bar
+    useEffect(() => {
+        if (progressBar === 10 ) {
+            setScore((x) => x - 2);
+            handleHistory('', 2);
         }
 
-        return () => clearInterval(progressRef.current);
-    }, [timerProgressBar, progressBar]);
-
-    useEffect(() => {
-        if (progressBar === 100) {
-            handleGetColors();
+        if (progressBar >= 10 ) {
+            setProgressBar(0);
         }
+
     }, [progressBar])
 
+    //verify new high score
     useEffect(() => {
         if (score > highScore) {
             setHighScore(score)
+            localStorage.setItem("high-score", JSON.stringify(score));
         }
         if (score < 0) {
             setScore(0)
         }
     }, [score])
 
+    //set history in sidebar component
+    useEffect(() => {
+        updateSideBar(history.reverse())
+    }, [history])
+
+    // verify color if selected
     const handleVerifyColor = (x: string) => {
-        x === option ? setScore((x) => x + 5) : setScore((x) => x - 1)
-        handleGetColors();
+        setProgressBar(0);
+        handleHistory(x);
     }
 
+    //set data in history
+    const handleHistory = (color: string, valueLost: number = 1) => {
+        const data: IHistory = {
+            guessedColor: color,
+            correctColor: option,
+            score: color === option ? score + 5 : score === 0 ? 0 : score - valueLost
+        }
+        setScore(data.score)
+        setHistory((x) => [...x, data])
+        setOption('');
+        handleGetColors();
+
+    }
+
+    //Timer 30s
     const startTimer = () => {
         timerRef.current = window.setInterval(() => {
             setTimer((prevTimer) => {
@@ -85,29 +132,69 @@ const CardGame = () => {
         }, 1000);
     };
 
+    //start Game
     const handleStartGame = () => {
         setBtnStart(true);
         setTimerStart(true);
         handleGetColors();
     }
 
+    //Get Random Colors
     const handleGetColors = () => {
-        const data = getColors()
-        if (data.length) {
-            setColors(data)
-            // setTimeProgressBar(true)
+        if (timer !== 0) {
+            const data = getColors()
+            if (data.length) {
+                setColors(data)
+                startProgressBar();
+            }
         }
+
     }
 
-    const handleResetGame = () => {
-        setBtnStart(false);
+    //start progressBar
+    const startProgressBar = () => {
+        if (!idProgressBar) {
+            const id = window.setInterval(() => {
+                setProgressBar((prevTimer) => prevTimer + 1);
+            }, 1000);
+            setIdProgressBar(id);
+        }
+    };
+
+    //stop progressBar
+    const stopProgressBar = () => {
+        if (idProgressBar) {
+            window.clearInterval(idProgressBar);
+            setProgressBar(0);
+            setIdProgressBar(undefined);
+        }
+    };
+
+    //verify endgame
+    const handleEndGame = () => {
+        localStorage.setItem('history', JSON.stringify(history.reverse()))
         setProgressBar(0);
+        stopProgressBar();
+    }
+
+    //reset game
+    const handleResetGame = () => {
+        stopProgressBar();
+        setBtnStart(false);
         setTimer(30);
         setTimerStart(false);
-        setTimeProgressBar(false);
-        setProgressBar(0);
         setColors([]);
         setScore(0);
+        setOption('');
+        setHistory([]);
+    }
+
+    //clear all data
+    const handleClearData = () => {
+        handleResetGame();
+        setHighScore(0);
+        localStorage.removeItem('high-score');
+        localStorage.removeItem('history');
     }
 
     const _TimerView = () => {
@@ -141,7 +228,7 @@ const CardGame = () => {
     const _ProgressBarView = () => {
         return (
             <div className='progress-bar-container'>
-                <progress value={progressBar} max="100" className='progress-bar'></progress>
+                <progress value={progressBar} max="10" className='progress-bar'></progress>
             </div>
         )
     }
@@ -153,21 +240,34 @@ const CardGame = () => {
                 {
                     btnStart ? (
                         <>
-                            <div className='color-question' style={{ background: option }}></div>
-                            <div className='options'>
-                                {
-                                    colors.map((x) => {
-                                        return (
-                                            <button className='btn-options' key={x} onClick={() => handleVerifyColor(x)}>{x}</button>
-                                        )
-                                    })
-                                }
-                            </div>
+                            {
+                                option && (
+                                    <>
+                                        <div className='color-question' style={{ background: option }}></div>
+                                        <div className='options'>
+                                            {
+                                                colors.map((x, idx) => {
+                                                    return (
+                                                        <button
+                                                            type='button'
+                                                            className='btn-options'
+                                                            key={idx}
+                                                            onClick={() => handleVerifyColor(x)}
+                                                            aria-label={x}
+                                                        >{x}</button>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    </>
+                                )
+                            }
+
                         </>
                     )
                         :
                         <div className='options' style={{ marginTop: '20%' }}>
-                            <button className='btn-start' onClick={() => handleStartGame()}>START</button>
+                            <button type='button' className='btn-start' onClick={() => handleStartGame()} aria-label='Start'>START</button>
                         </div>
                 }
             </div>
@@ -176,7 +276,7 @@ const CardGame = () => {
 
     const _ClearData = () => {
         return (
-            <button className='btn-delete'>Reset all data</button>
+            <button type='button' className='btn-delete' aria-label='Reset all data' onClick={() => handleClearData()}>Reset all data</button>
         )
     }
     return (
@@ -197,7 +297,7 @@ const CardGame = () => {
                 </div>
             </div>
             <div className='card-help'>
-                <p>teste</p>
+
             </div>
         </div>
     )

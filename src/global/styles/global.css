@@ -8,8 +8,9 @@
     --card-bg: #2C2C2C;
     --card-shadow: #000000bf;
     --card-help-bg: #2095DB;
-    --btn-history-selected: #2095DB;
-    --btn-history-selected-hover: #166b9c;
+    --btn-history-selected: #2095DB;    
+    --btn-history-selected-text: #262626;    
+    --btn-history-not-selected: #262626;
     --btn-history-not-selected: #262626;
     --btn-history-not-selected-hover: #ffffff;
     --btn-history-color: #333;
@@ -41,8 +42,10 @@
     --btn-start-bg-hover: #2095DB;
     --btn-start-border-hover: #fff;
     --btn-start-text-hover: #fff;
-    --btn-delete-bg: #ff0000;
-    --btn-delete-text: #fff;
+    --btn-delete-bg: #262626;
+    --btn-delete-text: #fff;;
+    --btn-delete-border: #262626;
+    --btn-delete-shadow: #fff;
     --btn-delete-bg-hover: #fff;
     --btn-delete-text-hover: #ff0000;
   }
