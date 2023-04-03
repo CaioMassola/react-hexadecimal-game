@@ -99,7 +99,6 @@ const CardGame = (props: CardProps) => {
   useEffect(() => {
     if (score > highScore) {
       setHighScore(score);
-      localStorage.setItem("high-score", JSON.stringify(score));
     }
     if (score < 0) {
       setScore(0);
@@ -185,6 +184,7 @@ const CardGame = (props: CardProps) => {
   //verify endgame
   const handleEndGame = () => {
     localStorage.setItem("history", JSON.stringify(history));
+    localStorage.setItem("high-score", JSON.stringify(score));
     setProgressBar(0);
     stopProgressBar();
   };
@@ -254,7 +254,7 @@ const CardGame = (props: CardProps) => {
           title={`HIGH SCORE = ${highScore}`}
           aria-label={`HIGH SCORE = ${highScore}`}
         >
-          HIGH SCORE = {highScore}
+          HIGH SCORE = {highScoreLocalStorage ? highScoreLocalStorage : score}
         </p>
         <p
           className="score"
