@@ -40,7 +40,7 @@ const CardGame = (props: CardProps) => {
 
     //insert last color
     useEffect(() => {
-        if(timer === 0) {
+        if(timer === 0 && progressBar !== timer) {
             handleHistory('', 2)
         }
     }, [timer])
@@ -95,7 +95,7 @@ const CardGame = (props: CardProps) => {
 
     //set history in sidebar component
     useEffect(() => {
-        updateSideBar(history.reverse())
+        updateSideBar(history)
     }, [history])
 
     // verify color if selected
@@ -112,7 +112,7 @@ const CardGame = (props: CardProps) => {
             score: color === option ? score + 5 : score === 0 ? 0 : score - valueLost
         }
         setScore(data.score)
-        setHistory((x) => [...x, data])
+        setHistory((x) => [data, ...x ])
         setOption('');
         handleGetColors();
 
@@ -172,7 +172,7 @@ const CardGame = (props: CardProps) => {
 
     //verify endgame
     const handleEndGame = () => {
-        localStorage.setItem('history', JSON.stringify(history.reverse()))
+        localStorage.setItem('history', JSON.stringify(history))
         setProgressBar(0);
         stopProgressBar();
     }
