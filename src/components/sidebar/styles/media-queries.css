@@ -45,7 +45,7 @@
     }
 
     .sub-title-sidebar p {
-        font-size: 15px;
+        font-size: 20px;
     }
 
     .button-selected {
@@ -83,7 +83,7 @@
     }
 
     .sub-title-sidebar p {
-        font-size: 8px;
+        font-size: 12px;
     }
 
     .button-selected {
@@ -106,7 +106,7 @@
 
     .history {
         font-size: 10px;
-        width: 90%;
+        width: 100%;
         height: 10px;
     }
 
@@ -125,7 +125,7 @@
     }
 
     .scoreText {
-        font-size: 15px;
+        font-size: 12px;
         margin-top: -5px;
     }
 }

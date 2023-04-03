@@ -1,6 +1,6 @@
 export type IHistory = {
-    guessedColor: string;
-    correctColor: string;
-    score: number;
-
-}
+  guessedColor: string;
+  correctColor: string;
+  time: number;
+  score: number;
+};
