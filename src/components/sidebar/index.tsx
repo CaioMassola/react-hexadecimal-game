@@ -20,7 +20,6 @@ const Sidebar = (props: SideBarProps) => {
 
   useEffect(() => {
     setHistory(isCurrentGame === "current" ? state : historyLocalStorage);
-    console.log("his", state);
   }, [state, isCurrentGame]);
 
   const _handleHistory = (type: string) => {
