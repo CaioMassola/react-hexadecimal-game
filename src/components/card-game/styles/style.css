@@ -238,7 +238,7 @@
     height: 35%;
     border-radius: 8px;
     background-color: var(--btn-delete-bg);
-    color: var( --btn-delete-text);
+    color: var(--btn-delete-text);
     font-weight: lighter;
     font-size: 15px;
     border: 0px solid var(--btn-delete-border);
