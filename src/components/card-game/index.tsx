@@ -233,6 +233,13 @@ const CardGame = (props: CardProps) => {
         )
     }
 
+    const _StartGame = () => {
+        return (
+            <div className='options' style={{ marginTop: '20%' }}>
+            <button type='button' className='btn-start' onClick={() => handleStartGame()} aria-label='Start'>START</button>
+        </div>
+        )
+    }
     const _GameView = () => {
 
         return (
@@ -266,9 +273,7 @@ const CardGame = (props: CardProps) => {
                         </>
                     )
                         :
-                        <div className='options' style={{ marginTop: '20%' }}>
-                            <button type='button' className='btn-start' onClick={() => handleStartGame()} aria-label='Start'>START</button>
-                        </div>
+                            <_StartGame />
                 }
             </div>
         )
