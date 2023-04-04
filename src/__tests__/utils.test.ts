@@ -23,7 +23,7 @@ describe("getColors", () => {
 
 //colorOption
 describe("colorOption", () => {
-  it("should return a valid color from the provided array", () => {
+  it("Return a selected color", () => {
     const colors = ["#fff", "#f2f2f2", "#333333"];
     const color = colorOption(colors);
     expect(typeof color).toBe("string");
