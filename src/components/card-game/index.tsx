@@ -40,16 +40,10 @@ const CardGame = (props: CardProps) => {
   const [timerStart, setTimerStart] = useState<boolean>(false);
   const timerRef = useRef<number>();
 
-  //insert last color
-  useEffect(() => {
-    if (timer === 0 && progressBar !== timer) {
-      handleHistory("", score <= 1 ? 1 : 2);
-    }
-  }, [timer]);
-
-  //remove item duplicate involuntary
+  //remove item duplicate involuntary and verify endgame
   useEffect(() => {
     if (timer === 0) {
+      handleEndGame();
       if (
         history.length > 0 &&
         history[0].correctColor === history[1].correctColor
@@ -57,7 +51,13 @@ const CardGame = (props: CardProps) => {
         setHistory([history[0], ...history.slice(2)]);
       }
     }
-  }, [history]);
+
+    if (timer === 0 && progressBar !== timer) {
+      handleHistory("", score <= 1 ? 1 : 2);
+    }
+    //set history in sidebar component
+    updateSideBar(history)
+  }, [history, timer]);
 
   //set right color
   useEffect(() => {
@@ -67,7 +67,7 @@ const CardGame = (props: CardProps) => {
     }
   }, [colors]);
 
-  //
+  //start and stop the timer
   useEffect(() => {
     if (timerStart) {
       startTimer();
@@ -76,39 +76,27 @@ const CardGame = (props: CardProps) => {
     }
   }, [timerStart]);
 
-  //verify endgame
-  useEffect(() => {
-    if (timer === 0) {
-      handleEndGame();
-    }
-  }, [timer, history]);
-
   //for update of progress bar
   useEffect(() => {
     if (progressBar === 10) {
-      setScore((x) => x - 2);
+      // setScore((x) => x - 2);
       handleHistory("", 2);
     }
 
     if (progressBar >= 10) {
       setProgressBar(0);
     }
-  }, [progressBar]);
+  }, [progressBar, score]);
 
   //verify new high score
   useEffect(() => {
-    if (score > highScore) {
-      setHighScore(score);
-    }
     if (score < 0) {
       setScore(0);
     }
+    if(timer === 0 && history[0].score > highScore ) {
+      setHighScore(score)
+    }
   }, [score]);
-
-  //set history in sidebar component
-  useEffect(() => {
-    updateSideBar(history);
-  }, [history]);
 
   // verify color if selected
   const handleVerifyColor = (x: string) => {
@@ -254,7 +242,7 @@ const CardGame = (props: CardProps) => {
           title={`HIGH SCORE = ${highScore}`}
           aria-label={`HIGH SCORE = ${highScore}`}
         >
-          HIGH SCORE = {highScoreLocalStorage ? highScoreLocalStorage : score}
+          HIGH SCORE = {highScore}
         </p>
         <p
           className="score"
