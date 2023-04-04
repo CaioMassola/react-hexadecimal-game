@@ -1,4 +1,5 @@
 import { colorOption, getColors, randomColor } from "../utils";
+import { TUTORIAL } from "../utils/tutorial";
 
 //randomColor
 test("Return a valid color!", () => {
@@ -29,4 +30,9 @@ describe("colorOption", () => {
     expect(typeof color).toBe("string");
     expect(colors).toContain(color);
   });
+});
+
+//tutorial
+test("TUTORIAL is a string", () => {
+  expect(typeof TUTORIAL).toBe("string");
 });
