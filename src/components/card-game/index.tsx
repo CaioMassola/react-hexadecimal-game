@@ -56,7 +56,7 @@ const CardGame = (props: CardProps) => {
       handleHistory("", score <= 1 ? 1 : 2);
     }
     //set history in sidebar component
-    updateSideBar(history)
+    updateSideBar(history);
   }, [history, timer]);
 
   //set right color
@@ -93,8 +93,8 @@ const CardGame = (props: CardProps) => {
     if (score < 0) {
       setScore(0);
     }
-    if(timer === 0 && history[0].score > highScore ) {
-      setHighScore(score)
+    if (timer === 0 && history[0].score > highScore) {
+      setHighScore(score);
     }
   }, [score]);
 
@@ -172,7 +172,12 @@ const CardGame = (props: CardProps) => {
   //verify endgame
   const handleEndGame = () => {
     localStorage.setItem("history", JSON.stringify(history));
-    localStorage.setItem("high-score", JSON.stringify(score));
+    localStorage.setItem(
+      "high-score",
+      JSON.stringify(
+        history[0].score > highScore ? history[0].score : highScore
+      )
+    );
     setProgressBar(0);
     stopProgressBar();
   };
@@ -336,7 +341,7 @@ const CardGame = (props: CardProps) => {
   };
 
   return (
-    <div className="card">
+    <div className="card" data-testid="app-card-game">
       <div className="card-game">
         <p
           className="card-title"

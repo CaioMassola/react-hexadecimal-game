@@ -22,4 +22,4 @@ const colorOption = (colors: string[]) => {
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
-export { getColors, colorOption };
+export { getColors, colorOption, randomColor };

@@ -126,7 +126,7 @@ const Sidebar = (props: SideBarProps) => {
   };
 
   return (
-    <div className="sidebar">
+    <div className="sidebar" data-testid="app-sidebar">
       <div className="header">
         <p>History</p>
         <_ButtonsTabView />
