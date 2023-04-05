@@ -1,4 +1,4 @@
-# Desafio Hexadecimal
+# Desafio Hexadecimal em REACT
 Olá dev! Este projeto é um teste que desafia suas habilidades em reconhecer cores representadas em formato hexadecimal. A meta é identificar o maior número de cores que puder dentro do prazo de 30 segundos.
 
 ## Como funciona
@@ -12,6 +12,12 @@ O jogador pode ganhar ou perder pontos, de acordo com as seguintes regras:
 - Além disso, para tornar a experiência do usuário ainda mais dinâmica, a aplicação conta com uma barra de progresso que indica o tempo restante para responder a cada pergunta. 
 - Através do armazenamento de dados no LocalStorage, o jogador pode visualizar seu histórico de partidas anteriores e tentar superar suas pontuações passadas.
 
+## Tecnologias
+
+- REACT com Typescript pelo framework Vite.
+- JestJS para a realização dos testes.
+- ReactJS com
+
 ## Instalação:
 - Instalando as dependências: `yarn install`
 - Iniciando o projeto: `yarn dev`
@@ -21,7 +27,6 @@ O jogador pode ganhar ou perder pontos, de acordo com as seguintes regras:
 
 - Para realizar todos os testes: `yarn test`
 - Para realizar o teste de um arquivo: `yarn test nomeArquivo` (Arquivos na pasta src/__tests__)
-- Testes realizados com JestJS
 
 - Obrigado!
 
