@@ -13,11 +13,11 @@ O jogador pode ganhar ou perder pontos, de acordo com as seguintes regras:
 - Através do armazenamento de dados no LocalStorage, o jogador pode visualizar seu histórico de partidas anteriores e tentar superar suas pontuações passadas.
 
 ## Instalação:
+- Instalando as dependências: `yarn install`
+- Iniciando o projeto: `yarn dev`
+- Versão do NodeJS: 14.18+
 
-- Instalando as dependências: yarn install
-- Iniciando o projeto: yarn dev
-
-Testes
+## Testes
 
 - Para realizar todos os testes: `yarn test`
 - Para realizar o teste de um arquivo: `yarn test nomeArquivo` (Arquivos na pasta src/__tests__)
