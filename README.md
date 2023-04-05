@@ -14,7 +14,7 @@ O jogador pode ganhar ou perder pontos, de acordo com as seguintes regras:
 
 ## Tecnologias
 
-- REACT com Typescript pelo framework Vite.
+- REACT com TypeScript pelo framework Vite.
 - JestJS para a realização dos testes.
 - ReactJS com
 
