@@ -219,18 +219,18 @@
     width: 70%;
     height: 100%;
     border-radius: 8px;
-    background-color: #2095DB;
+    background-color: var(--btn-start-bg);
     font-size: 25px;
-    color: #000000;
-    border: 1px solid white;
+    color: var(--btn-start-text);
+    border: 1px solid var(--btn-start-border-hover);
     margin-top: 10%;
 }
 
 .btn-start:hover {
-    background-color: white;
+    background-color: var(--btn-start-bg-hover);
     font-size: 20px;
-    color: #2095DB;
-    border: 1px solid #2095DB;
+    color: var(--btn-start-text-hover);
+    border: 1px solid var(--btn-start-border-hover);
     cursor: pointer;
 }
 
@@ -251,26 +251,4 @@
     color: var(--btn-delete-text-hover);
     border: 1px solid var(--btn-delete-text-hover);
     cursor: pointer;
-}
-
-.tutorial-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 5px;
-}
-
-.tutorial {
-    width: 100%;
-    height: 20px;
-    text-align: center;
-}
-
-.tutorial-list {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    font-size: 12px;
-    background-color: chartreuse;
-
 }

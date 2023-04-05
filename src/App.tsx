@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import CardGame from "./components/card-game";
 import Sidebar from "./components/sidebar";
-import { IHistory } from "./models/history";
+import { IHistory } from "./models/models";
 
 const App = () => {
   const [state, setState] = useState<IHistory[]>([]);

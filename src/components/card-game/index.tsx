@@ -1,13 +1,19 @@
 import "./styles/style.css";
 import "./styles/media-queries.css";
 import { useEffect, useRef, useState } from "react";
-import { colorOption, getColors } from "../../utils";
-import { IHistory } from "../../models/history";
-import { TUTORIAL } from "../../utils/tutorial";
-
-type CardProps = {
-  updateSideBar: (x: IHistory[]) => void;
-};
+import {
+  CardProps,
+  IHistory,
+  IPropsClearData,
+  IPropsGameView,
+  IPropsProgressBar,
+  IPropsRestart,
+  IPropsScore,
+  IPropsStart,
+  IPropsTimer,
+} from "../../models/models";
+import { TUTORIAL } from "../../global/global";
+import UtilsClass from "../../utils/utils";
 
 const CardGame = (props: CardProps) => {
   const { updateSideBar } = props;
@@ -40,6 +46,8 @@ const CardGame = (props: CardProps) => {
   const [timerStart, setTimerStart] = useState<boolean>(false);
   const timerRef = useRef<number>();
 
+  const utilsClass = new UtilsClass();
+
   //remove item duplicate involuntary and verify endgame
   useEffect(() => {
     if (timer === 0) {
@@ -62,8 +70,8 @@ const CardGame = (props: CardProps) => {
   //set right color
   useEffect(() => {
     if (colors.length) {
-      const color = colorOption(colors);
-      setOption(color);
+      const color = utilsClass.colorOption(colors);
+      setOption(color ?? "");
     }
   }, [colors]);
 
@@ -140,9 +148,9 @@ const CardGame = (props: CardProps) => {
   };
 
   //Get Random Colors
-  const handleGetColors = () => {
+  const handleGetColors = async () => {
     if (timer !== 0) {
-      const data = getColors();
+      const data = await utilsClass.getColors();
       if (data.length) {
         setColors(data);
         startProgressBar();
@@ -202,144 +210,6 @@ const CardGame = (props: CardProps) => {
     localStorage.removeItem("history");
   };
 
-  const _TimerView = () => {
-    return (
-      <div
-        className="timer"
-        aria-label={`REMANING TIME (s): ${timerStart ? timer : "30"}`}
-        title={`REMANING TIME (s): ${timerStart ? timer : "30"}`}
-      >
-        <p>REMANING TIME (s)</p>
-        <p
-          className="timer-value"
-          style={{
-            color:
-              (timerStart && timer && timer == 0) || timer <= 10
-                ? "red"
-                : "white",
-          }}
-        >
-          {timerStart ? timer : "30"}
-        </p>
-      </div>
-    );
-  };
-
-  const _RestartView = () => {
-    return (
-      <button
-        onClick={() => handleResetGame()}
-        className={btnStart ? "btn-restart" : "btn-restart-disabled"}
-        disabled={btnStart ? false : true}
-        aria-label="Restart"
-        title="Restart"
-      >
-        Restart
-      </button>
-    );
-  };
-
-  const _ScoreView = () => {
-    return (
-      <div className="score-container">
-        <p
-          className="high-score"
-          title={`HIGH SCORE = ${highScore}`}
-          aria-label={`HIGH SCORE = ${highScore}`}
-        >
-          HIGH SCORE = {highScore}
-        </p>
-        <p
-          className="score"
-          title={`SCORE = ${score}`}
-          aria-label={`SCORE = ${score}`}
-        >
-          SCORE = {score}
-        </p>
-      </div>
-    );
-  };
-
-  const _ProgressBarView = () => {
-    return (
-      <div className="progress-bar-container">
-        <progress
-          value={progressBar}
-          max="10"
-          className="progress-bar"
-          aria-label={`Time Question: ${progressBar}`}
-          title={`Time Question: ${progressBar}`}
-        ></progress>
-      </div>
-    );
-  };
-
-  const _StartGame = () => {
-    return (
-      <div className="options">
-        <button
-          type="button"
-          className="btn-start"
-          onClick={() => handleStartGame()}
-          aria-label="Start"
-          title="Start"
-        >
-          START
-        </button>
-      </div>
-    );
-  };
-  const _GameView = () => {
-    return (
-      <div className="game-view-container">
-        {btnStart ? (
-          <>
-            {option && (
-              <>
-                <div
-                  className="color-question"
-                  style={{ background: option }}
-                ></div>
-                <div className="options">
-                  {colors.map((x, idx) => {
-                    return (
-                      <button
-                        type="button"
-                        className="btn-options"
-                        key={idx}
-                        onClick={() => handleVerifyColor(x)}
-                        aria-label={x}
-                        title={x}
-                      >
-                        {x}
-                      </button>
-                    );
-                  })}
-                </div>
-              </>
-            )}
-          </>
-        ) : (
-          <_StartGame />
-        )}
-      </div>
-    );
-  };
-
-  const _ClearData = () => {
-    return (
-      <button
-        type="button"
-        className="btn-delete"
-        aria-label="Reset all data"
-        title="Reset all data"
-        onClick={() => handleClearData()}
-      >
-        Reset all data
-      </button>
-    );
-  };
-
   return (
     <div className="card" data-testid="app-card-game">
       <div className="card-game">
@@ -351,20 +221,198 @@ const CardGame = (props: CardProps) => {
           What is the color?
         </p>
         <div className="card-info">
-          <_TimerView />
-          <_RestartView />
-          <_ScoreView />
+          <_TimerView data={{ timer, timerStart }} />
+          <_RestartView data={{ btnStart, handleResetGame }} />
+          <_ScoreView data={{ score, highScore }} />
         </div>
         <div className="card-question">
-          <_ProgressBarView />
-          <_GameView />
+          <_ProgressBarView progressBar={progressBar} />
+          <_GameView
+            data={{
+              btnStart,
+              colors,
+              option,
+              handleStartGame,
+              handleVerifyColor,
+            }}
+          />
         </div>
         <div className="card-delete-info">
-          <_ClearData />
+          <_ClearData handleClearData={handleClearData} />
         </div>
       </div>
     </div>
   );
 };
 
+//TimerComponent
+const _TimerView = (props: IPropsTimer) => {
+  const { timer, timerStart } = props.data;
+  return (
+    <div
+      className="timer"
+      aria-label={`REMANING TIME (s): ${timerStart ? timer : "30"}`}
+      title={`REMANING TIME (s): ${timerStart ? timer : "30"}`}
+      data-testid="timer"
+    >
+      <p>REMANING TIME (s)</p>
+      <p
+        className="timer-value"
+        style={{
+          color:
+            (timerStart && timer && timer == 0) || timer <= 10
+              ? "red"
+              : "white",
+        }}
+      >
+        {timerStart ? timer : "30"}
+      </p>
+    </div>
+  );
+};
+
+//ScoreView
+const _ScoreView = (props: IPropsScore) => {
+  const { score, highScore } = props.data;
+  return (
+    <div className="score-container">
+      <p
+        className="high-score"
+        title={`HIGH SCORE = ${highScore}`}
+        aria-label={`HIGH SCORE = ${highScore}`}
+        data-testid="score"
+      >
+        HIGH SCORE = {highScore}
+      </p>
+      <p
+        className="score"
+        title={`SCORE = ${score}`}
+        aria-label={`SCORE = ${score}`}
+      >
+        SCORE = {score}
+      </p>
+    </div>
+  );
+};
+
+//ProgressBarComponent
+const _ProgressBarView = (props: IPropsProgressBar) => {
+  const { progressBar } = props;
+  return (
+    <div className="progress-bar-container">
+      <progress
+        value={progressBar}
+        max="10"
+        className="progress-bar"
+        aria-label={`Time Question: ${progressBar}`}
+        title={`Time Question: ${progressBar}`}
+        data-testid="progressbar"
+      ></progress>
+    </div>
+  );
+};
+
+//RestartGame
+const _RestartView = (props: IPropsRestart) => {
+  const { btnStart, handleResetGame } = props.data;
+  return (
+    <button
+      onClick={() => handleResetGame()}
+      className={btnStart ? "btn-restart" : "btn-restart-disabled"}
+      disabled={btnStart ? false : true}
+      aria-label="Restart"
+      title="Restart"
+      data-testid="restart"
+    >
+      Restart
+    </button>
+  );
+};
+
+//Start Game
+const _StartGame = (props: IPropsStart) => {
+  const { handleStartGame } = props;
+  return (
+    <div className="options">
+      <button
+        type="button"
+        className="btn-start"
+        onClick={() => handleStartGame()}
+        aria-label="Start"
+        title="Start"
+        data-testid="start"
+      >
+        START
+      </button>
+    </div>
+  );
+};
+
+//Game
+const _GameView = (props: IPropsGameView) => {
+  const { btnStart, option, colors, handleVerifyColor, handleStartGame } =
+    props.data;
+
+  return (
+    <div className="game-view-container" data-testid="game-view-container">
+      {btnStart ? (
+        <>
+          {option && (
+            <>
+              <div
+                className="color-question"
+                style={{ background: option }}
+              ></div>
+              <div className="options">
+                {colors.map((x, idx) => {
+                  return (
+                    <button
+                      type="button"
+                      className="btn-options"
+                      key={idx}
+                      onClick={() => handleVerifyColor(x)}
+                      aria-label={x}
+                      title={x}
+                    >
+                      {x}
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          )}
+        </>
+      ) : (
+        <_StartGame handleStartGame={handleStartGame} />
+      )}
+    </div>
+  );
+};
+
+//ClearData
+const _ClearData = (props: IPropsClearData) => {
+  const { handleClearData } = props;
+  return (
+    <button
+      type="button"
+      className="btn-delete"
+      aria-label="Reset all data"
+      title="Reset all data"
+      onClick={() => handleClearData()}
+      data-testeid="clear"
+    >
+      Reset all data
+    </button>
+  );
+};
+
 export default CardGame;
+export {
+  _TimerView,
+  _ProgressBarView,
+  _RestartView,
+  _ScoreView,
+  _GameView,
+  _StartGame,
+  _ClearData,
+};
