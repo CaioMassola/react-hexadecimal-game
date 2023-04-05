@@ -6,4 +6,5 @@ test("Return Render SideBar", () => {
   const { getByTestId } = render(<Sidebar state={[]} />);
   const appComponent = getByTestId("app-sidebar");
   expect(appComponent).toBeInTheDocument();
+  expect(appComponent).toHaveClass("sidebar")
 });
