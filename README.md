@@ -21,6 +21,7 @@ O jogador pode ganhar ou perder pontos, de acordo com as seguintes regras:
 
 - Para realizar todos os testes: `yarn test`
 - Para realizar o teste de um arquivo: `yarn test nomeArquivo` (Arquivos na pasta src/__tests__)
+- Testes realizados com JestJS
 
 - Obrigado!
 
